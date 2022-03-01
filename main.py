@@ -3,17 +3,18 @@ import time
 from selenium import webdriver
 import keyboard
 
+
 class MonkeyTyper:
     def __init__(self) -> None:
         # Disable all notifications from selenium
         options = webdriver.ChromeOptions()
-        options.add_argument('--disable-notifications')
+        options.add_argument("--disable-notifications")
 
         # Set up webdriver
         self.driver = webdriver.Chrome(options=options)
 
         # Open monkeytye
-        self.driver.get('https://monkeytype.com/')
+        self.driver.get("https://monkeytype.com/")
         self._switch_to_words()
 
     # This is the function that switches to the words tab
@@ -22,11 +23,11 @@ class MonkeyTyper:
         Switches to words tab
         Basically just clicks buttons and refreshes the page
         """
-        f = self.driver.find_elements(by="class name", value='text-button')
+        f = self.driver.find_elements(by="class name", value="text-button")
         time.sleep(2)
         f[3].click()
         time.sleep(2)
-        f = self.driver.find_elements(by="class name", value='text-button')
+        f = self.driver.find_elements(by="class name", value="text-button")
         for element in f:
             if element.get_attribute("wordcount") == "10":
                 element.click()
@@ -40,7 +41,7 @@ class MonkeyTyper:
         Gets the sentence
         All sentences in monkeytype are in `word`
         In every word, there are <letter> tags
-        
+
         This function collects everything into one sentence and returns it
         """
         time.sleep(2)
@@ -48,11 +49,11 @@ class MonkeyTyper:
         wordsWrapper = self.driver.find_element(by="id", value="wordsWrapper")
         try:
             wordsWrapper.click()
-        except :
+        except:
             pass
         # gets all the words and make a sentence
         words = self.driver.find_elements(by="class name", value="word")
-        sentence = ''
+        sentence = ""
         for word in words:
             # All letters are in <letter> tags
             letters = word.find_elements(by="tag name", value="letter")
@@ -71,14 +72,14 @@ class MonkeyTyper:
         sentence = self._get_sentence()
 
         keyboard.write(sentence, delay=0.04)
-        keyboard.press_and_release('enter')
-        keyboard.press_and_release('tab')
+        keyboard.press_and_release("enter")
+        keyboard.press_and_release("tab")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     typer = MonkeyTyper()
-    time.sleep(10) # Sleeping to allow the user to do stuff before starting
+    time.sleep(10)  # Sleeping to allow the user to do stuff before starting
     i = 0
     while True:
         typer.start()
-        i+=1
+        i += 1
