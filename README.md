@@ -11,7 +11,9 @@
 > Flex your typing speed against your friend (without actually typing)
 
 ### ✨ [Demo](https://img.dhravya.dev/b37.gif)
+![gif](https://us-east-1.tixte.net/uploads/img.dhravya.dev/b37.gif)
 
+***
 ## Install
 
 ```sh
