@@ -70,8 +70,9 @@ class MonkeyTyper:
         """
         sentence = self._get_sentence()
 
-        keyboard.write(sentence, delay=0.025)
-        
+        keyboard.write(sentence, delay=0.04)
+        keyboard.press_and_release('enter')
+        keyboard.press_and_release('tab')
 
 
 if __name__ == '__main__':
