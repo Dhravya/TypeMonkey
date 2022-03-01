@@ -1,7 +1,7 @@
 # Imports
 import time
 from selenium import webdriver
-import pywinauto
+import keyboard
 
 class MonkeyTyper:
     def __init__(self) -> None:
@@ -60,7 +60,7 @@ class MonkeyTyper:
                 if not "correct" in letter.get_attribute("class"):
                     # If the letter is not correct, adds it to the sentence
                     sentence += letter.text
-            sentence += "{SPACE}"
+            sentence += " "
         return sentence
 
     # Starts the typing
@@ -70,9 +70,7 @@ class MonkeyTyper:
         """
         sentence = self._get_sentence()
 
-        # TODO: Make this run faster somehow
-        # Currently the typing speed is 199 💀 so annoying because it's so close to 200
-        pywinauto.keyboard.send_keys(sentence+ "{TAB}{ENTER}")
+        keyboard.write(sentence, delay=0.025)
         
 
 
